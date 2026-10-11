@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline": "#737686", "surface-bright": "#faf8ff", "tertiary-container": "#5d55f3", "tertiary": "#4338d9", "on-secondary-fixed-variant": "#0039b5", "tertiary-fixed-dim": "#c3c0ff", "on-error": "#ffffff", "on-surface": "#131b2e", "primary": "#004ac6", "inverse-on-surface": "#eef0ff", "on-secondary-fixed": "#001551", "background": "#faf8ff", "secondary-fixed-dim": "#b7c4ff", "on-surface-variant": "#434655", "on-secondary-container": "#fffbff", "inverse-surface": "#283044", "surface-container": "#eaedff", "surface-tint": "#0053db", "surface-variant": "#dae2fd", "secondary-container": "#4069f2", "on-secondary": "#ffffff", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "surface-container-low": "#f2f3ff", "inverse-primary": "#b4c5ff", "on-tertiary-container": "#f2eeff", "primary-container": "#2563eb", "on-primary-fixed": "#00174b", "primary-fixed": "#dbe1ff", "secondary": "#1d4ed8", "outline-variant": "#c3c6d7", "surface-container-highest": "#dae2fd", "on-background": "#131b2e", "on-primary": "#ffffff", "on-error-container": "#93000a", "secondary-fixed": "#dce1ff", "on-tertiary-fixed-variant": "#3323cc", "primary-fixed-dim": "#b4c5ff", "on-primary-container": "#eeefff", "on-tertiary": "#ffffff", "surface-dim": "#d2d9f4", "tertiary-fixed": "#e2dfff", "on-primary-fixed-variant": "#003ea8", "surface": "#faf8ff", "on-tertiary-fixed": "#0f0069", "error-container": "#ffdad6", "surface-container-high": "#e2e7ff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2.5rem", "margin": "2rem", "gutter": "1.5rem", "space-sm": "0.5rem", "space-md": "1rem" }, "fontFamily": { "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"] }, "fontSize": { "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between p-space-md"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-sm px-space-xs py-space-xs"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-[0_4px_14px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[24px]">graphic_eq</span></div><div class="flex flex-col"><div class="flex items-center gap-1.5"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">VACHAN</span><span class="font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed px-1.5 py-0.5 rounded">PRO</span></div><span class="font-label-sm text-label-sm text-primary font-medium tracking-wide">VoiceGuard Intelligence</span></div></div><div class="px-space-xs"><div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase">Agent Portal • Field Operations</span></div></div><div class="pt-space-xs"><span class="px-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Core Modules</span></div><nav class="flex flex-col gap-1.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_4px_14px_rgba(37,99,235,0.18)]"><a aria-current="page" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all group bg-primary-container text-on-primary-container font-semibold shadow-[0_4px_14px_rgba(37,99,235,0.18)]" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-105">dashboard</span><span class="font-label-lg text-label-lg">Overview</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="insurance-schemes" href="#"><span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-105">verified_user</span><span class="font-label-lg text-label-lg">Insurance Schemes</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="new-enrollment" href="#"><span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-105">add_circle</span><span class="font-label-lg text-label-lg">New Enrollment</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="registrations" href="#"><span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-105">fact_check</span><span class="font-label-lg text-label-lg">Registrations</span></a></nav></div><div class="flex flex-col gap-space-sm pt-space-md"><div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-[0_2px_6px_-1px_rgba(15,23,42,0.03)] flex flex-col gap-2"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Voice Biometric Engine</span><span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span></span></div><div class="flex items-center justify-between"><span class="font-body-sm text-body-sm text-on-surface font-medium">Telemetry Stream</span><span class="font-label-sm text-label-sm text-primary font-bold">99.8% Conf.</span></div></div><div class="flex items-center justify-between px-space-xs text-outline font-label-sm text-label-sm"><span>v4.18.2 Secured</span><span class="material-symbols-outlined text-[16px]">lock</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-2"><span class="font-body-sm text-body-sm text-on-surface-variant">Agent Workspace</span><span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span><span class="font-label-md text-label-md text-on-surface font-semibold">Overview</span></div><div class="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span>Demo Sandbox • TLS 1.3</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-outline">search</span><input class="w-80 h-9 pl-9 pr-12 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-all" placeholder="Search registrations, schemes, or clients..." type="text"/><span class="absolute right-2.5 px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm text-[10px]">⌘K</span></div><button class="relative p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary"></span></button><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-3 pl-1"><div class="flex flex-col text-right"><div class="flex items-center justify-end gap-1.5"><span class="font-label-md text-label-md text-on-surface font-semibold">Rajesh M.</span><span class="w-2 h-2 rounded-full bg-primary"></span></div><span class="font-label-sm text-label-sm text-on-surface-variant">Senior Advisory Agent</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 w-full min-h-screen px-space-lg py-space-md bg-background"><div class="flex flex-col w-full gap-y-6">
+<!-- 1. Page Header -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-2">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Agent Workspace</h1>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-primary font-semibold tracking-wide">PORTFOLIO v4.18</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Manage customer enrollments and ensure policy terms are ready for confirmation.
+      </p>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg shadow-sm transition-all group" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-on-surface">sync</span>
+<span>Sync Vault</span>
+</button>
+<a class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-primary hover:bg-secondary text-on-primary font-label-lg text-label-lg shadow-[0_4px_14px_rgba(37,99,235,0.28)] transition-all transform hover:-translate-y-0.5" href="#new-enrollment">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Start New Enrollment</span>
+</a>
+</div>
+</div>
+<!-- 2. Overview Metrics Row (4 Exact Supported Status Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+<!-- Card 1: Total Registrations -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.05),0_2px_6px_-1px_rgba(15,23,42,0.03)] flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md uppercase tracking-wider text-outline font-semibold">Total Registrations</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">All-time agent portfolio</span>
+</div>
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">folder_shared</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-5">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">24</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">100% Volume</span>
+</div>
+</div>
+<!-- Card 2: Awaiting Customer Confirmation -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.05),0_2px_6px_-1px_rgba(15,23,42,0.03)] flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md uppercase tracking-wider text-outline font-semibold">Awaiting Customer</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Awaiting customer sign-off</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container animate-pulse"></span>
+          Pending Client
+        </span>
+</div>
+<div class="flex items-baseline justify-between pt-5">
+<span class="font-headline-lg text-headline-lg font-bold text-secondary-container">3</span>
+<span class="font-label-sm text-label-sm text-secondary-container font-medium">Action Required</span>
+</div>
+</div>
+<!-- Card 3: Confirmed Registrations -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.05),0_2px_6px_-1px_rgba(15,23,42,0.03)] flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md uppercase tracking-wider text-outline font-semibold">Confirmed</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Customer bound &amp; activated</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          Active
+        </span>
+</div>
+<div class="flex items-baseline justify-between pt-5">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">18</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">75% Bound Rate</span>
+</div>
+</div>
+<!-- Card 4: Pending Review -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.05),0_2px_6px_-1px_rgba(15,23,42,0.03)] flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md uppercase tracking-wider text-outline font-semibold">Pending Review</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Underwriter / audit check</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+          Audit Queue
+        </span>
+</div>
+<div class="flex items-baseline justify-between pt-5">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">3</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">In Telemetry Scan</span>
+</div>
+</div>
+</div>
+<!-- 3. Primary Workflow Panel ("Start an Enrollment") -->
+<div class="relative rounded-2xl bg-surface-container-lowest p-6 sm:p-7 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.06),0_2px_6px_-1px_rgba(15,23,42,0.03)] overflow-hidden">
+<!-- Subtle luminous background tint -->
+<div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-surface-container opacity-40 blur-3xl pointer-events-none"></div>
+<div class="relative flex flex-col gap-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]">assignment_add</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Start an Enrollment</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Follow deterministic voice protocols to bind statutory policies in real-time.</p>
+</div>
+</div>
+<span class="self-start sm:self-auto px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold tracking-wide uppercase">
+          Guided 3-Step Process
+        </span>
+</div>
+<!-- 3 Horizontal Steps -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Step 1 -->
+<div class="flex flex-col gap-2 p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-primary uppercase tracking-wider">Step 01</span>
+<span class="material-symbols-outlined text-[18px] text-outline">verified_user</span>
+</div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">1. Select Scheme</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Choose an active underwritten policy scheme suited to client requirements.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col gap-2 p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-primary uppercase tracking-wider">Step 02</span>
+<span class="material-symbols-outlined text-[18px] text-outline">mic</span>
+</div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">2. Capture Consent &amp; Audio</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Record customer tele-sales consultation and explicit consent under voice telemetry.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col gap-2 p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-primary uppercase tracking-wider">Step 03</span>
+<span class="material-symbols-outlined text-[18px] text-outline">send_time_extension</span>
+</div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">3. Submit for Confirmation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Dispatch deterministic terms to client vault for binding approval and audit validation.
+          </p>
+</div>
+</div>
+<!-- Action CTA Bar -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+<div class="flex items-center gap-4">
+<a class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary hover:bg-secondary text-on-primary font-label-lg text-label-lg shadow-[0_4px_14px_rgba(37,99,235,0.25)] transition-all" href="#new-enrollment">
+<span>Create Enrollment</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="font-label-md text-label-md text-primary hover:text-secondary font-semibold transition-colors flex items-center gap-1" href="#agent-guidelines">
+<span>Review Agent Guidelines</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">security</span>
+<span>IRDAI Non-Repudiation Guaranteed • Audio Hash SHA-256</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Two-Column Grid for Operational Sections -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left Column (65% width approx -> col-span-12 lg:col-span-8) - Recent Registrations -->
+<div class="lg:col-span-8 flex flex-col gap-4">
+<div class="rounded-2xl bg-surface-container-lowest p-6 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.05),0_2px_6px_-1px_rgba(15,23,42,0.03)]">
+<!-- Section Header + Controls -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Recent Registrations</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Live audit log of all-channel voice submissions</span>
+</div>
+<div class="flex items-center gap-2.5">
+<!-- Search -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-[16px] text-outline">search</span>
+<input class="h-9 w-44 sm:w-52 pl-8 pr-3 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-all" id="registration-search" placeholder="Filter records..." type="text"/>
+</div>
+<!-- Filter Dropdown -->
+<div class="relative">
+<select class="h-9 px-3 pr-8 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none appearance-none cursor-pointer" id="status-filter">
+<option value="ALL">All Statuses</option>
+<option value="AWAITING_CUSTOMER_CONFIRMATION">Awaiting Confirmation</option>
+<option value="CONFIRMED">Confirmed</option>
+<option value="PENDING_REVIEW">Pending Review</option>
+<option value="DECLINED">Declined</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Clean Enterprise Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<th class="py-3 px-3.5 rounded-l-xl font-bold">Registration Ref</th>
+<th class="py-3 px-3.5 font-bold">Customer Name</th>
+<th class="py-3 px-3.5 font-bold">Policy / Scheme</th>
+<th class="py-3 px-3.5 font-bold">Created Date</th>
+<th class="py-3 px-3.5 font-bold">Status</th>
+<th class="py-3 px-3.5 rounded-r-xl font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y-0" id="registration-table-body">
+<!-- Row 1: Awaiting Confirmation -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-3.5">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">#REG-2026-8821</span>
+<span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 cursor-pointer">content_copy</span>
+</div>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Vikram Sengupta</span>
+<span class="font-label-sm text-label-sm text-outline">+91 98402 11920</span>
+</div>
+</td>
+<td class="py-3.5 px-3.5 text-on-surface-variant font-medium">
+                  Care Premier Health Shield
+                </td>
+<td class="py-3.5 px-3.5 text-outline">
+                  Oct 12, 2026
+                </td>
+<td class="py-3.5 px-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+                    AWAITING_CUSTOMER_CONFIRMATION
+                  </span>
+</td>
+<td class="py-3.5 px-3.5 text-right">
+<button class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm font-semibold transition-colors" type="button">
+<span>View Details</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Confirmed -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-3.5">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">#REG-2026-9402</span>
+<span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 cursor-pointer">content_copy</span>
+</div>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Meera Nair</span>
+<span class="font-label-sm text-label-sm text-outline">+91 94470 33819</span>
+</div>
+</td>
+<td class="py-3.5 px-3.5 text-on-surface-variant font-medium">
+                  Comprehensive Auto DriveProtect
+                </td>
+<td class="py-3.5 px-3.5 text-outline">
+                  Oct 10, 2026
+                </td>
+<td class="py-3.5 px-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    CONFIRMED
+                  </span>
+</td>
+<td class="py-3.5 px-3.5 text-right">
+<button class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm font-semibold transition-colors" type="button">
+<span>View Details</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Pending Review -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-3.5">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">#REG-2026-7719</span>
+<span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 cursor-pointer">content_copy</span>
+</div>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Rohit Batra</span>
+<span class="font-label-sm text-label-sm text-outline">+91 98110 55432</span>
+</div>
+</td>
+<td class="py-3.5 px-3.5 text-on-surface-variant font-medium">
+                  Life Horizon Secure Term
+                </td>
+<td class="py-3.5 px-3.5 text-outline">
+                  Sep 28, 2026
+                </td>
+<td class="py-3.5 px-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                    PENDING_REVIEW
+                  </span>
+</td>
+<td class="py-3.5 px-3.5 text-right">
+<button class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm font-semibold transition-colors" type="button">
+<span>View Details</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Declined -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-3.5">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">#REG-2026-6540</span>
+<span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 cursor-pointer">content_copy</span>
+</div>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Priya Sharma</span>
+<span class="font-label-sm text-label-sm text-outline">+91 97230 44102</span>
+</div>
+</td>
+<td class="py-3.5 px-3.5 text-on-surface-variant font-medium">
+                  Home Shield Fire &amp; Allied
+                </td>
+<td class="py-3.5 px-3.5 text-outline">
+                  Sep 15, 2026
+                </td>
+<td class="py-3.5 px-3.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                    DECLINED
+                  </span>
+</td>
+<td class="py-3.5 px-3.5 text-right">
+<button class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm font-semibold transition-colors" type="button">
+<span>View Details</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Summary -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-5 mt-2">
+<span class="font-body-sm text-body-sm text-outline">
+            Showing <strong class="text-on-surface font-semibold">4</strong> of <strong class="text-on-surface font-semibold">24</strong> registrations
+          </span>
+<a class="inline-flex items-center gap-1.5 font-label-md text-label-md text-primary hover:text-secondary font-bold transition-colors" href="#registrations">
+<span>View All Registrations</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Right Column (35% width approx -> col-span-12 lg:col-span-4) - Available Schemes Preview -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<div class="rounded-2xl bg-surface-container-lowest p-6 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.05),0_2px_6px_-1px_rgba(15,23,42,0.03)] flex flex-col gap-4">
+<!-- Header -->
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Available Schemes</h2>
+<span class="font-body-sm text-body-sm text-outline">Underwritten policy packages</span>
+</div>
+<a class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:text-secondary font-semibold transition-colors" href="#insurance-schemes">
+<span>Browse Schemes</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+<!-- Stack of 3 Compact Preview Cards -->
+<div class="flex flex-col gap-3">
+<!-- Scheme 1: Care Premier Health Shield -->
+<div class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-2.5 group cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface group-hover:text-primary transition-colors">
+                  Care Premier Health Shield
+                </span>
+<span class="font-label-sm text-label-sm text-outline">Health &amp; Critical Care</span>
+</div>
+<span class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Comprehensive inpatient hospitalization with cashless network.
+            </p>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 font-label-sm text-label-sm text-outline">
+<span>Limit: <strong class="text-on-surface font-semibold">₹15,00,000</strong></span>
+<span>•</span>
+<span>Wait: <strong class="text-on-surface font-semibold">24 Mos</strong></span>
+<span>•</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-semibold text-primary">v2.4 (IRDAI)</span>
+</div>
+</div>
+<!-- Scheme 2: Comprehensive Auto DriveProtect -->
+<div class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-2.5 group cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface group-hover:text-primary transition-colors">
+                  Comprehensive Auto DriveProtect
+                </span>
+<span class="font-label-sm text-label-sm text-outline">Motor &amp; Roadside Logistics</span>
+</div>
+<span class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Motor protection including zero depreciation and roadside telemetry.
+            </p>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 font-label-sm text-label-sm text-outline">
+<span>Limit: <strong class="text-on-surface font-semibold">₹8,50,000</strong></span>
+<span>•</span>
+<span>Wait: <strong class="text-on-surface font-semibold">Day 1</strong></span>
+<span>•</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-semibold text-primary">v1.8</span>
+</div>
+</div>
+<!-- Scheme 3: Life Horizon Secure Term -->
+<div class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-2.5 group cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface group-hover:text-primary transition-colors">
+                  Life Horizon Secure Term
+                </span>
+<span class="font-label-sm text-label-sm text-outline">Term Life Assurance</span>
+</div>
+<span class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Pure term life protection with critical illness telemetry rider.
+            </p>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 font-label-sm text-label-sm text-outline">
+<span>Limit: <strong class="text-on-surface font-semibold">₹50,00,000</strong></span>
+<span>•</span>
+<span>Wait: <strong class="text-on-surface font-semibold">30 Days</strong></span>
+<span>•</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-semibold text-primary">v3.1</span>
+</div>
+</div>
+</div>
+<!-- Bottom Secondary Button -->
+<a class="w-full py-2.5 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold text-center transition-colors flex items-center justify-center gap-2" href="#insurance-schemes">
+<span class="material-symbols-outlined text-[18px] text-outline">library_books</span>
+<span>Browse All Schemes</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic client-side filter and search logic for operational responsiveness
+  (function initDashboardInteractivity() {
+    const searchInput = document.getElementById('registration-search');
+    const statusFilter = document.getElementById('status-filter');
+    const tableBody = document.getElementById('registration-table-body');
+
+    if (!searchInput || !statusFilter || !tableBody) return;
+
+    function filterRows() {
+      const query = searchInput.value.toLowerCase().trim();
+      const selectedStatus = statusFilter.value;
+      const rows = tableBody.querySelectorAll('tr');
+
+      rows.forEach(row => {
+        const textContent = row.textContent.toLowerCase();
+        const matchesQuery = query === '' || textContent.includes(query);
+        const matchesStatus = selectedStatus === 'ALL' || textContent.includes(selectedStatus.toLowerCase());
+
+        if (matchesQuery && matchesStatus) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    searchInput.addEventListener('input', filterRows);
+    statusFilter.addEventListener('change', filterRows);
+  })();
+</script></main></div></body></html>

@@ -55,6 +55,9 @@ async def create_registration(
     async with get_db_connection() as conn:
         # 1. Resolve or create customer account
         customer_id = body.customer_id
+        is_new_customer = False
+        generated_password = None
+
         if not customer_id:
             if not body.customer_email:
                 raise ValidationException("Either customer_id or customer_email must be supplied.")
@@ -62,8 +65,10 @@ async def create_registration(
             if existing_user:
                 customer_id = existing_user["id"]
             else:
-                # Create onboarding customer in PENDING_VERIFICATION state
-                temp_pwd = hash_password(generate_secure_token())
+                # Create onboarding customer in ACTIVE state so they can log in immediately
+                is_new_customer = True
+                generated_password = "password123"
+                temp_pwd = hash_password(generated_password)
                 new_customer = await user_repo.create_user(
                     conn=conn,
                     email=body.customer_email,
@@ -71,7 +76,7 @@ async def create_registration(
                     full_name=body.customer_full_name or "Valued Customer",
                     phone=body.customer_phone,
                     role=UserRole.CUSTOMER.value,
-                    account_status=AccountStatus.PENDING_VERIFICATION.value,
+                    account_status=AccountStatus.ACTIVE.value,
                 )
                 customer_id = new_customer["id"]
 
@@ -80,17 +85,38 @@ async def create_registration(
             raise ValidationException("Target account is not a valid customer.")
 
         # 2. Validate policy and published version
-        policy = await policy_repo.get_policy_by_id(conn, body.policy_id)
+        policy = None
+        target_policy_id = body.policy_id
+        import uuid
+        try:
+            uuid.UUID(str(target_policy_id))
+            policy = await policy_repo.get_policy_by_id(conn, str(target_policy_id))
+        except (ValueError, TypeError, AttributeError):
+            policy = await policy_repo.get_policy_by_code(conn, str(target_policy_id))
+        
+        if not policy:
+            # Fallback to matching by code or first active policy
+            all_active = await policy_repo.list_policies(conn, is_active=True)
+            if all_active:
+                policy = all_active[0]
+                target_policy_id = policy["id"]
+
         if not policy or not policy["is_active"]:
             raise ValidationException("Selected policy does not exist or is inactive.")
 
+        resolved_policy_id = policy["id"]
+
         if body.policy_version_id:
-            version = await policy_repo.get_policy_version_by_id(conn, body.policy_version_id)
-            if not version or not version["is_published"] or version["policy_id"] != body.policy_id:
+            try:
+                uuid.UUID(str(body.policy_version_id))
+                version = await policy_repo.get_policy_version_by_id(conn, body.policy_version_id)
+            except (ValueError, TypeError, AttributeError):
+                version = None
+            if not version or not version["is_published"] or version["policy_id"] != resolved_policy_id:
                 raise ValidationException("Specified policy version is not published or invalid.")
             version_id = body.policy_version_id
         else:
-            latest = await policy_repo.get_published_version(conn, body.policy_id)
+            latest = await policy_repo.get_published_version(conn, resolved_policy_id)
             if not latest:
                 raise ValidationException("Selected policy has no published version.")
             version_id = latest["id"]
@@ -100,11 +126,28 @@ async def create_registration(
             conn=conn,
             customer_id=customer_id,
             agent_id=current_agent["id"],
-            policy_id=body.policy_id,
+            policy_id=resolved_policy_id,
             policy_version_id=version_id,
             customer_consent=body.customer_consent,
             consent_notes=body.consent_notes,
         )
+
+        # 4. Dispatch onboarding credentials email via Gmail SMTP
+        email_service = EmailService()
+        if is_new_customer and generated_password:
+            email_service.send_customer_credentials_email(
+                email=customer["email"],
+                full_name=customer["full_name"],
+                temporary_password=generated_password,
+                policy_name=policy.get("policy_name"),
+            )
+        else:
+            email_service.send_customer_credentials_email(
+                email=customer["email"],
+                full_name=customer["full_name"],
+                temporary_password="(Your existing account password)",
+                policy_name=policy.get("policy_name"),
+            )
 
         await audit_repo.log_audit_event(
             conn=conn,

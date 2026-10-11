@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-error-container": "#93000a",
+          "tertiary-fixed-dim": "#c3c0ff",
+          "on-tertiary": "#ffffff",
+          "secondary": "#1d4ed8",
+          "primary": "#004ac6",
+          "error-container": "#ffdad6",
+          "surface-container-lowest": "#ffffff",
+          "outline-variant": "#c3c6d7",
+          "on-surface-variant": "#434655",
+          "surface-container-high": "#e2e7ff",
+          "tertiary-container": "#5d55f3",
+          "secondary-fixed-dim": "#b7c4ff",
+          "surface-container-low": "#f2f3ff",
+          "surface-dim": "#d2d9f4",
+          "surface-variant": "#dae2fd",
+          "primary-fixed": "#dbe1ff",
+          "on-tertiary-fixed-variant": "#3323cc",
+          "on-secondary-fixed-variant": "#0039b5",
+          "inverse-on-surface": "#eef0ff",
+          "secondary-fixed": "#dce1ff",
+          "surface": "#faf8ff",
+          "surface-container-highest": "#dae2fd",
+          "on-secondary-container": "#fffbff",
+          "on-primary-fixed": "#00174b",
+          "on-primary-container": "#eeefff",
+          "primary-fixed-dim": "#b4c5ff",
+          "on-secondary-fixed": "#001551",
+          "outline": "#737686",
+          "on-tertiary-container": "#f2eeff",
+          "tertiary": "#4338d9",
+          "on-tertiary-fixed": "#0f0069",
+          "surface-tint": "#0053db",
+          "surface-container": "#eaedff",
+          "surface-bright": "#faf8ff",
+          "on-surface": "#131b2e",
+          "on-secondary": "#ffffff",
+          "on-primary": "#ffffff",
+          "on-background": "#131b2e",
+          "primary-container": "#2563eb",
+          "background": "#faf8ff",
+          "inverse-surface": "#283044",
+          "on-primary-fixed-variant": "#003ea8",
+          "inverse-primary": "#b4c5ff",
+          "error": "#ba1a1a",
+          "on-error": "#ffffff",
+          "secondary-container": "#4069f2",
+          "tertiary-fixed": "#e2dfff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "gutter": "1.5rem",
+          "margin": "2rem",
+          "space-xl": "2.5rem",
+          "space-sm": "0.5rem",
+          "space-xs": "0.25rem",
+          "space-md": "1rem",
+          "space-lg": "1.5rem"
+        },
+        "fontFamily": {
+          "headline-xl-mobile": ["Plus Jakarta Sans"],
+          "label-sm": ["Plus Jakarta Sans"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "label-lg": ["Plus Jakarta Sans"],
+          "headline-lg-mobile": ["Plus Jakarta Sans"],
+          "label-md": ["Plus Jakarta Sans"],
+          "headline-lg": ["Plus Jakarta Sans"],
+          "headline-xl": ["Plus Jakarta Sans"],
+          "body-lg": ["Plus Jakarta Sans"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "headline-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+          "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+          "body-md": ["14px", {"lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400"}],
+          "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+          "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+          "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+          "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+          "body-lg": ["16px", {"lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+          "body-sm": ["12px", {"lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+        }
+      }
+    }
+  }</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><div class="w-9 h-9 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shadow-[0_4px_14px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[20px]">verified_user</span></div><div class="flex flex-col leading-none"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">VACHAN</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">InsureChain VoiceGuard</span></div></div><div class="px-space-md py-space-sm"><div class="bg-surface-container-low rounded-xl px-space-md py-space-xs flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-primary">graphic_eq</span><span class="font-label-sm text-label-sm text-primary tracking-wide">Biometric Voice Engine Ready</span></div></div><nav class="px-space-md py-space-sm flex flex-col gap-space-xs" data-active-classes="bg-primary text-on-primary font-label-lg shadow-[0_4px_14px_rgba(37,99,235,0.25)]"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-colors bg-primary text-on-primary font-label-lg shadow-[0_4px_14px_rgba(37,99,235,0.25)]" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="my-policies" href="#"><span class="material-symbols-outlined text-[20px]">shield</span><span>My Policies</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="my-claims" href="#"><span class="material-symbols-outlined text-[20px]">fact_check</span><span>My Claims</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="documents" href="#"><span class="material-symbols-outlined text-[20px]">folder_shared</span><span>Documents</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="activity" href="#"><span class="material-symbols-outlined text-[20px]">history</span><span>Activity</span></a></nav></div><div class="p-space-md flex flex-col gap-space-xs"><div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface leading-tight">Ananya Kapoor</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Policyholder</span></div></div><a class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="settings" href="#" title="Account Settings"><span class="material-symbols-outlined text-[18px]">settings</span></a></div><a class="flex items-center justify-between px-space-md py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="sign-out" href="#"><span class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">logout</span><span>Sign Out</span></span><span class="font-label-sm text-label-sm text-on-surface-variant">v2.4.1</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-space-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-md text-label-md"><span class="text-on-surface-variant">Customer Portal</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span><span class="text-primary font-label-lg text-label-lg">Overview</span></div><div class="hidden md:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-full"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Verified Vault • TLS 1.3</span></div></div><div class="flex items-center gap-space-sm"><div class="relative hidden sm:flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-on-surface-variant">search</span><input class="bg-surface-container-low font-body-sm text-body-sm text-on-surface pl-9 pr-space-md py-space-xs rounded-xl focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary w-60 transition-all" placeholder="Search policies, claims..." type="text"/></div><button class="w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Interactive Confirmation Modal Component -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-inverse-surface/40 backdrop-blur-sm transition-all p-space-md" id="confirmModal">
+<div class="relative w-full max-w-xl bg-surface-container-lowest rounded-2xl shadow-xl overflow-hidden flex flex-col">
+<div class="p-space-lg bg-surface-container-low flex items-start justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Confirm Statutory Binding</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">POST /api/v1/registrations/REG-2026-8821/confirm</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container-high transition-colors" id="closeConfirmModalBtn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Target Registration</span>
+<span class="font-label-md text-label-md font-mono text-primary font-bold">#REG-2026-8821</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-semibold">Care Premier Health Shield (₹15,00,000)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Underwritten via Verified Acoustic Telemetry • Broker ID: #AG-7721-M</p>
+</div>
+<!-- Consequence Disclosure -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">policy</span>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Statutory Declaration of Consent</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              By confirming, you validate that the audio-recorded disclosures match your policy intent. Upon cryptographic signing, this record transitions into an IRDAI-compliant immutable registry block. A tamper-proof timestamp will bind your customer token.
+            </p>
+</div>
+</div>
+<!-- Token Header Handshake Preview -->
+<div class="flex items-center justify-between px-space-md py-space-xs bg-surface-container-low rounded-xl text-on-surface-variant font-mono text-[11px]">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary"></span>Bearer Token: eyJhbGciOi...auth_usr_ananya</span>
+<span class="text-primary font-semibold">TLS 1.3 Vault Encrypted</span>
+</div>
+</div>
+<div class="p-space-lg bg-surface-container-low flex items-center justify-end gap-space-sm">
+<button class="px-space-lg py-2.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" id="cancelModalBtn">
+          Cancel
+        </button>
+<button class="px-space-xl py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-md hover:bg-secondary transition-all flex items-center gap-space-xs" id="executeConfirmBtn">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Sign &amp; Quick Confirm</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Canvas Container -->
+<div class="w-full max-w-[1440px] mx-auto px-space-gutter py-space-xl flex flex-col gap-space-xl">
+<!-- 1. Header Section with Contextual Controls -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Client Verification Vault</span>
+<span class="text-on-surface-variant text-label-sm">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Live Ledger Sync</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Your insurance, at a glance</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Track your policies, confirmations, and claims in one place.</p>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<!-- Live Timestamp & Refresh CTA -->
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-md py-2 rounded-full shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono" id="syncTimestamp">Synced: Just now (14:32:04 IST)</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface shadow-sm transition-all group active:scale-95" id="refreshDataBtn" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:rotate-180 transition-transform duration-500">sync</span>
+<span class="font-label-md text-label-md">Refresh Data</span>
+</button>
+<div class="relative">
+<button class="w-10 h-10 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface-variant flex items-center justify-center shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-surface-container-lowest"></span>
+</button>
+</div>
+</div>
+</div>
+<!-- 2. Compact Key Metric Cards Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Registrations Total -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">My Registrations</span>
+<div class="w-9 h-9 rounded-xl bg-surface-container-low text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight">4</span>
+<span class="font-label-sm text-label-sm text-primary font-mono bg-surface-container-low px-2 py-0.5 rounded-full">Vault Active</span>
+</div>
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span>4 cryptographic records verified</span>
+</div>
+</div>
+<!-- Card 2: Awaiting Confirmation -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary-container"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Awaiting Confirmation</span>
+<div class="w-9 h-9 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">hourglass_top</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight">1</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary bg-surface-container-high px-2 py-0.5 rounded-full">Action Required</span>
+</div>
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>Requires customer consent</span>
+</div>
+</div>
+<!-- Card 3: Confirmed Policies -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Confirmed Policies</span>
+<div class="w-9 h-9 rounded-xl bg-surface-container-low text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">gpp_good</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight">2</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold bg-surface-container-low px-2 py-0.5 rounded-full">IRDAI Compliant</span>
+</div>
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+<span>Coverage active &amp; legally bound</span>
+</div>
+</div>
+<!-- Card 4: Honest Claims API Boundary -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">My Claims</span>
+<div class="w-9 h-9 rounded-xl bg-surface-container-low text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">shield_with_heart</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight">0</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full">No active claims</span>
+</div>
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">cloud_done</span>
+<span class="truncate">Customer Claims API Synced: 0 active</span>
+</div>
+</div>
+</div>
+<!-- 3. Prominent "Needs Your Attention" Section -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">priority_high</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Needs your attention</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">1 Action Outstanding</span>
+</div>
+<!-- High Priority Card with Visual Waveform and Direct Action Controls -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative overflow-hidden">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-space-lg flex-1">
+<!-- Voiceprint Telemetry Badge / Visual Icon -->
+<div class="w-16 h-16 rounded-2xl bg-surface-container-low flex flex-col items-center justify-center shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-primary text-[32px]">record_voice_over</span>
+<span class="font-label-sm text-[9px] text-primary font-bold uppercase tracking-tighter">Audio Match</span>
+</div>
+<!-- Policy & Regulatory Metadata -->
+<div class="flex flex-col gap-space-xs flex-1">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Care Premier Health Shield</span>
+<span class="font-mono text-label-md font-bold text-primary bg-surface-container-low px-2 py-0.5 rounded-md">#REG-2026-8821</span>
+<span class="bg-surface-container-high text-primary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                AWAITING_CUSTOMER_CONFIRMATION
+              </span>
+</div>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-3 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1 font-semibold text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">currency_rupee</span>
+                Coverage Limit: ₹15,00,000
+              </span>
+<span>•</span>
+<span>Issued by Advisory Agent: <strong class="text-on-surface">Rajesh M.</strong></span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">graphic_eq</span>
+                Tele-telemetry audio sealed (87.4s)
+              </span>
+</div>
+<!-- Regulatory Advisory Note -->
+<div class="mt-1 flex items-center gap-2 p-2 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-[18px] text-primary shrink-0">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<strong class="text-on-surface">Statutory Notice:</strong> Verbal pre-sale commitment review required prior to statutory activation. Confirming certifies your voice acknowledgment.
+              </p>
+</div>
+</div>
+</div>
+<!-- Action Control Cluster -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-space-sm shrink-0 self-stretch lg:self-center pt-space-sm lg:pt-0">
+<button class="flex-1 sm:flex-initial px-space-md py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors flex items-center justify-center gap-1" id="openDeclineBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+<span>Decline</span>
+</button>
+<button class="flex-1 sm:flex-initial px-space-md py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center justify-center gap-1" id="openReviewBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Review Terms</span>
+</button>
+<button class="w-full sm:w-auto px-space-xl py-2.5 rounded-full bg-primary hover:bg-secondary text-on-primary font-label-md text-label-md shadow-md transition-all flex items-center justify-center gap-space-xs group" id="openConfirmModalBtn" type="button">
+<span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">check_circle</span>
+<span>Quick Confirm</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 4. Recent Registrations / Policy Activity (Bento / Analytical Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Main Enterprise Registrations Table (8 Columns) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg flex flex-col gap-space-md overflow-hidden">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Registered Policy Ledgers</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Validated customer registrations via GET /api/v1/registrations</span>
+</div>
+<!-- Clean Segment Filter Control -->
+<div class="flex items-center p-1 bg-surface-container-low rounded-xl" id="tableFilterTabs">
+<button class="filter-tab active px-3 py-1 rounded-lg font-label-sm text-label-sm font-semibold bg-surface-container-lowest text-on-surface shadow-xs transition-all" data-filter="all">All (4)</button>
+<button class="filter-tab px-3 py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" data-filter="pending">Pending (1)</button>
+<button class="filter-tab px-3 py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" data-filter="confirmed">Confirmed (2)</button>
+<button class="filter-tab px-3 py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" data-filter="declined">Declined (1)</button>
+</div>
+</div>
+<!-- Compact Enterprise Table -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant uppercase font-label-sm text-label-sm tracking-wider">
+<th class="py-3 px-space-md rounded-l-xl">Policy / Scheme Name</th>
+<th class="py-3 px-space-md">Registration ID</th>
+<th class="py-3 px-space-md">Coverage</th>
+<th class="py-3 px-space-md">Created Date</th>
+<th class="py-3 px-space-md">Status</th>
+<th class="py-3 px-space-md text-right rounded-r-xl">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0" id="registrationsTableBody">
+<!-- Row 1: Attention Item -->
+<tr class="table-row group hover:bg-surface-container-low transition-colors" data-status="pending">
+<td class="py-4 px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-2 h-2 rounded-full bg-primary shrink-0"></div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Care Premier Health Shield</span>
+</div>
+</td>
+<td class="py-4 px-space-md font-mono text-on-surface-variant">#REG-2026-8821</td>
+<td class="py-4 px-space-md font-semibold text-on-surface">₹15,00,000</td>
+<td class="py-4 px-space-md text-on-surface-variant">Oct 12, 2026</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    AWAITING_CUSTOMER_CONFIRMATION
+                  </span>
+</td>
+<td class="py-4 px-space-md text-right">
+<button class="open-confirm-trigger text-primary font-label-md text-label-md hover:underline font-bold">
+                    Review &amp; Verify
+                  </button>
+</td>
+</tr>
+<!-- Row 2: Confirmed Policy -->
+<tr class="table-row group hover:bg-surface-container-low transition-colors" data-status="confirmed">
+<td class="py-4 px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-2 h-2 rounded-full bg-primary shrink-0"></div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Comprehensive Auto DriveProtect</span>
+</div>
+</td>
+<td class="py-4 px-space-md font-mono text-on-surface-variant">#REG-2026-9402</td>
+<td class="py-4 px-space-md font-semibold text-on-surface">₹8,50,000</td>
+<td class="py-4 px-space-md text-on-surface-variant">Sep 28, 2026</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    CONFIRMED
+                  </span>
+</td>
+<td class="py-4 px-space-md text-right">
+<button class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+                    View Policy
+                  </button>
+</td>
+</tr>
+<!-- Row 3: Pending Review Policy -->
+<tr class="table-row group hover:bg-surface-container-low transition-colors" data-status="confirmed">
+<td class="py-4 px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-2 h-2 rounded-full bg-primary shrink-0"></div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Life Horizon Secure Term</span>
+</div>
+</td>
+<td class="py-4 px-space-md font-mono text-on-surface-variant">#REG-2026-7719</td>
+<td class="py-4 px-space-md font-semibold text-on-surface">₹50,00,000</td>
+<td class="py-4 px-space-md text-on-surface-variant">Aug 14, 2026</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    CONFIRMED
+                  </span>
+</td>
+<td class="py-4 px-space-md text-right">
+<button class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+                    View Policy
+                  </button>
+</td>
+</tr>
+<!-- Row 4: Declined Policy -->
+<tr class="table-row group hover:bg-surface-container-low transition-colors" data-status="declined">
+<td class="py-4 px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-2 h-2 rounded-full bg-outline shrink-0"></div>
+<span class="font-label-md text-label-md font-semibold text-on-surface-variant">Home Shield Fire &amp; Allied</span>
+</div>
+</td>
+<td class="py-4 px-space-md font-mono text-on-surface-variant">#REG-2025-4105</td>
+<td class="py-4 px-space-md font-medium text-on-surface-variant">₹35,00,000</td>
+<td class="py-4 px-space-md text-on-surface-variant">Dec 02, 2025</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                    DECLINED
+                  </span>
+</td>
+<td class="py-4 px-space-md text-right">
+<span class="text-on-surface-variant/60 font-label-md text-label-md cursor-not-allowed">
+                    Archived
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination Metadata -->
+<div class="pt-space-sm flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Showing 4 of 4 customer registrations</span>
+<div class="flex items-center gap-1">
+<span class="font-mono text-on-surface font-semibold">100%</span>
+<span>synchronicity with distributed core</span>
+</div>
+</div>
+</div>
+<!-- 5. Claims Preview & API Boundary Section (4 Columns) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Claims Status Card -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Claims Status</h3>
+<span class="material-symbols-outlined text-primary text-[20px]">assignment_turned_in</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Customer-scoped claim tracking</span>
+</div>
+<!-- Zero Claim Elegant State Box -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest text-primary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface font-semibold">No active claims filed</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                No claims filed for your registered policies. Claims can be initiated from the dedicated Claims workflow when an event occurs.
+              </p>
+</div>
+</div>
+<!-- Action & Scope Boundary Note -->
+<div class="flex flex-col gap-space-sm">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-bold hover:gap-2 transition-all" href="#">
+<span>Go to Claims Guidance</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<div class="pt-2 flex items-start gap-1.5 text-on-surface-variant font-label-sm text-[11px] leading-tight">
+<span class="material-symbols-outlined text-[14px] text-primary shrink-0 mt-0.5">lock</span>
+<span>Compliance Constraint: Authority claims ledger access is restricted to verified adjusters.</span>
+</div>
+</div>
+</div>
+<!-- Biometric Voice Assurance Telemetry Widget -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Voice Biometrics Engine</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-primary font-mono text-[10px] font-bold">READY</span>
+</div>
+<!-- Real-time Oscilloscope Visualization SVG -->
+<div class="h-16 w-full bg-surface-container-low rounded-xl flex items-center justify-center px-4 overflow-hidden relative">
+<svg class="w-full h-10 text-primary" fill="none" preserveaspectratio="none" viewbox="0 0 300 40">
+<path d="M0 20 L20 20 L30 8 L40 32 L50 14 L60 26 L70 20 L90 20 L100 4 L110 36 L120 18 L130 22 L140 20 L170 20 L180 10 L190 30 L200 12 L210 28 L220 20 L240 20 L250 15 L260 25 L270 20 L300 20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-low via-transparent to-surface-container-low pointer-events-none"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Acoustic Profile Confidence</span>
+<span class="text-primary font-mono font-bold">99.4% Match</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+    (function initDashboard() {
+      // Modal Handling
+      const modal = document.getElementById('confirmModal');
+      const openBtn = document.getElementById('openConfirmModalBtn');
+      const closeBtn = document.getElementById('closeConfirmModalBtn');
+      const cancelBtn = document.getElementById('cancelModalBtn');
+      const executeBtn = document.getElementById('executeConfirmBtn');
+      const reviewBtn = document.getElementById('openReviewBtn');
+      const declineBtn = document.getElementById('openDeclineBtn');
+      const tableTriggers = document.querySelectorAll('.open-confirm-trigger');
+
+      function openModal() {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      if (openBtn) openBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+      
+      tableTriggers.forEach(t => t.addEventListener('click', openModal));
+
+      if (executeBtn) {
+        executeBtn.addEventListener('click', function() {
+          executeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Transacting...</span>';
+          executeBtn.disabled = true;
+          setTimeout(() => {
+            alert('POST /api/v1/registrations/REG-2026-8821/confirm executed successfully! Biometric ledger signed.');
+            closeModal();
+            executeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">lock</span><span>Sign & Quick Confirm</span>';
+            executeBtn.disabled = false;
+          }, 900);
+        });
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener('click', function() {
+          const proceed = confirm('Execute POST /api/v1/registrations/REG-2026-8821/decline? This will revoke pending underwriting approval.');
+          if (proceed) {
+            alert('Policy registration marked as DECLINED.');
+          }
+        });
+      }
+
+      if (reviewBtn) {
+        reviewBtn.addEventListener('click', openModal);
+      }
+
+      // Filter Tabs for Data Table
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const rows = document.querySelectorAll('#registrationsTableBody .table-row');
+
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          filterTabs.forEach(t => {
+            t.classList.remove('active', 'bg-surface-container-lowest', 'text-on-surface', 'shadow-xs');
+            t.classList.add('text-on-surface-variant');
+          });
+          this.classList.add('active', 'bg-surface-container-lowest', 'text-on-surface', 'shadow-xs');
+          this.classList.remove('text-on-surface-variant');
+
+          const filter = this.getAttribute('data-filter');
+          rows.forEach(row => {
+            if (filter === 'all' || row.getAttribute('data-status') === filter) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Data Refresh Simulation
+      const refreshBtn = document.getElementById('refreshDataBtn');
+      const timestampEl = document.getElementById('syncTimestamp');
+
+      if (refreshBtn) {
+        refreshBtn.addEventListener('click', function() {
+          const now = new Date();
+          const timeStr = now.toTimeString().split(' ')[0] + ' IST';
+          timestampEl.innerText = 'Synced: Just now (' + timeStr + ')';
+          refreshBtn.classList.add('opacity-50');
+          setTimeout(() => refreshBtn.classList.remove('opacity-50'), 400);
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

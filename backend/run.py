@@ -1,11 +1,11 @@
 """
 Entrypoint runner for InsureChain VoiceGuard FastAPI backend.
-Configures WindowsSelectorEventLoopPolicy and loop="none" for psycopg 3 async compatibility.
+Configures WindowsSelectorEventLoopPolicy and loop="none" for psycopg 3 async compatibility on Windows.
 """
 import sys
+import asyncio
 
 if sys.platform == "win32":
-    import asyncio
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 import uvicorn

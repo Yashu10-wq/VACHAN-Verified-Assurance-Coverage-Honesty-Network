@@ -41,7 +41,9 @@ def create_connection_pool() -> AsyncConnectionPool:
         min_size=1,
         max_size=10,
         timeout=float(settings.DATABASE_CONNECT_TIMEOUT),
-        max_idle=300.0,
+        max_idle=60.0,
+        max_lifetime=600.0,
+        check=AsyncConnectionPool.check_connection,
         open=False,  # Opened explicitly on application startup
     )
 
@@ -83,6 +85,7 @@ async def get_db_connection() -> AsyncGenerator[AsyncConnection, None]:
     """
     Context manager yielding an AsyncConnection from the pool.
     Ensures safe return to pool and converts internal driver errors to sanitized DatabaseExceptions.
+    Handles Neon serverless idle connection drops with automatic retry.
     """
     global _pool
     if _pool is None or _pool.closed:
@@ -94,15 +97,21 @@ async def get_db_connection() -> AsyncGenerator[AsyncConnection, None]:
         except Exception as exc:
             raise DatabaseException(f"Database connection pool unavailable: {type(exc).__name__}") from exc
 
-    try:
-        async with pool.connection() as conn:
-            yield conn
-    except psycopg.OperationalError as exc:
-        logger.error("Database operational error encountered: %s", type(exc).__name__)
-        raise DatabaseException("Database service is currently unreachable.") from exc
-    except psycopg.Error as exc:
-        logger.error("Database query error encountered: %s", type(exc).__name__)
-        raise DatabaseException("Database operation failed.") from exc
+    for attempt in range(2):
+        try:
+            async with pool.connection() as conn:
+                yield conn
+                return
+        except psycopg.OperationalError as exc:
+            logger.warning("Database connection dropped or stale (attempt %d/2): %s", attempt + 1, exc)
+            if attempt == 1:
+                logger.error("Database operational error encountered: %s", type(exc).__name__)
+                raise DatabaseException("Database service is currently unreachable.") from exc
+            import asyncio
+            await asyncio.sleep(0.3)
+        except psycopg.Error as exc:
+            logger.error("Database query error encountered: %s", type(exc).__name__)
+            raise DatabaseException("Database operation failed.") from exc
 
 
 async def check_database_readiness(timeout_seconds: float = 3.0) -> bool:

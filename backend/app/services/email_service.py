@@ -45,6 +45,36 @@ class EmailService:
         )
         return self._deliver(to_email=email, subject=subject, body=body, token=raw_token)
 
+    def send_customer_credentials_email(
+        self,
+        email: str,
+        full_name: str,
+        temporary_password: str,
+        policy_name: Optional[str] = None,
+    ) -> bool:
+        """Sends customer their login credentials and enrolled policy information."""
+        policy_info = f"\nEnrolled Policy: {policy_name}\n" if policy_name else ""
+        subject = f"Welcome to VACHAN - Your Account Credentials & Policy Enrollment"
+        body = (
+            f"Dear {full_name},\n\n"
+            f"Your VACHAN (Verified Assurance Coverage Network) customer account has been created successfully.\n"
+            f"{policy_info}\n"
+            f"Here are your login credentials to access your policyholder dashboard:\n"
+            f"--------------------------------------------------\n"
+            f"Portal URL: {self.settings.APP_URL}/login\n"
+            f"Username / Email: {email}\n"
+            f"Password: {temporary_password}\n"
+            f"--------------------------------------------------\n\n"
+            f"You can now sign in at {self.settings.APP_URL}/login to:\n"
+            f"- Review your policy coverage limits and waiting periods\n"
+            f"- Verify immutable voice commitment transcripts anchored on-chain\n"
+            f"- Submit claims with instant automated payout verification\n\n"
+            f"Warm regards,\n"
+            f"VACHAN Trust & Assurance Team\n"
+            f"Government of India / Vortexa 3.0"
+        )
+        return self._deliver(to_email=email, subject=subject, body=body, token="credentials")
+
     def send_password_reset_email(self, email: str, raw_token: str) -> bool:
         """Sends password reset link."""
         link = f"{self.settings.APP_URL}/reset-password?token={raw_token}"
@@ -95,13 +125,21 @@ class EmailService:
                 msg["Subject"] = subject
                 msg.attach(MIMEText(body, "plain"))
 
-                with smtplib.SMTP(
-                    self.settings.SMTP_HOST, self.settings.SMTP_PORT, timeout=10
-                ) as server:
-                    if self.settings.SMTP_USERNAME and self.settings.SMTP_PASSWORD:
-                        server.starttls()
-                        server.login(self.settings.SMTP_USERNAME, self.settings.SMTP_PASSWORD)
-                    server.send_message(msg)
+                if self.settings.SMTP_PORT == 465:
+                    with smtplib.SMTP_SSL(
+                        self.settings.SMTP_HOST, self.settings.SMTP_PORT, timeout=10
+                    ) as server:
+                        if self.settings.SMTP_USERNAME and self.settings.SMTP_PASSWORD:
+                            server.login(self.settings.SMTP_USERNAME, self.settings.SMTP_PASSWORD)
+                        server.send_message(msg)
+                else:
+                    with smtplib.SMTP(
+                        self.settings.SMTP_HOST, self.settings.SMTP_PORT, timeout=10
+                    ) as server:
+                        if self.settings.SMTP_USERNAME and self.settings.SMTP_PASSWORD:
+                            server.starttls()
+                            server.login(self.settings.SMTP_USERNAME, self.settings.SMTP_PASSWORD)
+                        server.send_message(msg)
                 logger.info("SMTP email delivered to %s", to_email)
                 return True
             except Exception as exc:

@@ -65,10 +65,7 @@ async def signup(body: SignupRequest) -> Dict[str, Any]:
             raise ConflictException("An account with this email already exists.")
 
         # Determine safe initial account status
-        if body.role == UserRole.CUSTOMER:
-            initial_status = AccountStatus.PENDING_VERIFICATION
-        else:
-            initial_status = AccountStatus.PENDING_APPROVAL
+        initial_status = AccountStatus.ACTIVE
 
         pwd_hash = hash_password(body.password)
         user = await user_repo.create_user(
@@ -81,17 +78,13 @@ async def signup(body: SignupRequest) -> Dict[str, Any]:
             account_status=initial_status.value,
         )
 
-        # Issue email verification token if customer
-        if body.role == UserRole.CUSTOMER:
-            raw_token = generate_secure_token()
-            t_hash = hash_token(raw_token)
-            expires_at = datetime.now(timezone.utc) + timedelta(
-                hours=settings.EMAIL_VERIFICATION_EXPIRE_HOURS
-            )
-            await token_repo.create_user_token(
-                conn, user["id"], TokenType.EMAIL_VERIFICATION.value, t_hash, expires_at
-            )
-            email_service.send_verification_email(user["email"], raw_token)
+        # Dispatch welcome and credentials email
+        email_service.send_customer_credentials_email(
+            email=user["email"],
+            full_name=user["full_name"],
+            temporary_password=body.password,
+            policy_name="Customer Welcome Portal",
+        )
 
         await audit_repo.log_audit_event(
             conn=conn,

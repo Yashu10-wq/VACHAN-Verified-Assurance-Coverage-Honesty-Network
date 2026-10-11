@@ -4,8 +4,7 @@ Uses Pydantic Settings to load and validate environment variables safely.
 """
 
 from functools import lru_cache
-import re
-from typing import List, Optional
+from typing import Any, List, Optional
 from urllib.parse import urlparse
 
 from pydantic import Field, field_validator
@@ -27,7 +26,13 @@ class Settings(BaseSettings):
 
     # CORS allowlist for frontend origins
     FRONTEND_ORIGINS: List[str] = Field(
-        default_factory=lambda: ["http://localhost:5173", "http://localhost:3000"]
+        default_factory=lambda: [
+            "http://localhost:5173",
+            "http://localhost:5174",
+            "http://localhost:3000",
+            "http://127.0.0.1:5173",
+            "http://127.0.0.1:5174",
+        ]
     )
 
     # Database configuration (Neon Cloud PostgreSQL strictly required)
@@ -102,12 +107,30 @@ class Settings(BaseSettings):
     SMTP_USERNAME: Optional[str] = Field(default=None)
     SMTP_PASSWORD: Optional[str] = Field(default=None)
     APP_URL: str = Field(default="http://localhost:5173")
+    GMAIL_USER: Optional[str] = Field(default=None)
+    GMAIL_APP_PASSWORD: Optional[str] = Field(default=None)
 
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
         extra="ignore",
     )
+
+    def model_post_init(self, __context: Any) -> None:
+        """Auto-configures Gmail SMTP if GMAIL_USER and GMAIL_APP_PASSWORD are provided in .env."""
+        if self.GMAIL_USER and self.GMAIL_APP_PASSWORD:
+            if not self.SMTP_HOST:
+                self.SMTP_HOST = "smtp.gmail.com"
+            if self.SMTP_PORT == 587 or not self.SMTP_PORT:
+                self.SMTP_PORT = 465
+            if not self.SMTP_USERNAME:
+                self.SMTP_USERNAME = self.GMAIL_USER
+            if not self.SMTP_PASSWORD:
+                self.SMTP_PASSWORD = self.GMAIL_APP_PASSWORD.replace(" ", "")
+            if self.EMAIL_FROM == "noreply@insurechain-voiceguard.local":
+                self.EMAIL_FROM = self.GMAIL_USER
+            if self.EMAIL_PROVIDER == "console":
+                self.EMAIL_PROVIDER = "smtp"
 
     @field_validator("FRONTEND_ORIGINS", mode="before")
     @classmethod
@@ -117,7 +140,7 @@ class Settings(BaseSettings):
             return [origin.strip() for origin in value.split(",") if origin.strip()]
         if isinstance(value, list):
             return [str(origin).strip() for origin in value if str(origin).strip()]
-        return ["http://localhost:5173", "http://localhost:3000"]
+        return ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000", "http://127.0.0.1:5173", "http://127.0.0.1:5174"]
 
     def get_database_url(self) -> str:
         """
