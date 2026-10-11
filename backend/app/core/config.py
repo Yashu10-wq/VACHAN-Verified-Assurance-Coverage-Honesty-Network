@@ -73,6 +73,15 @@ class Settings(BaseSettings):
     GEMINI_MODEL: str = Field(default="gemini-2.5-flash")
     RUN_LIVE_GEMINI_TEST: bool = Field(default=False)
 
+    # Blockchain Audit Anchoring (EVM / Hardhat local node)
+    BLOCKCHAIN_RPC_URL: str = Field(default="http://127.0.0.1:8545")
+    BLOCKCHAIN_CHAIN_ID: int = Field(default=31337)
+    AUDIT_CONTRACT_ADDRESS: Optional[str] = Field(default=None)
+    BLOCKCHAIN_OPERATOR_PRIVATE_KEY: Optional[str] = Field(default=None)
+    BLOCKCHAIN_RPC_TIMEOUT_SECONDS: float = Field(default=5.0)
+    MAX_ANCHOR_BATCH_SIZE: int = Field(default=50)
+    RUN_LIVE_BLOCKCHAIN_TEST: bool = Field(default=False)
+
     # Security & JWT Authentication
     JWT_SECRET_KEY: str = Field(default="insurechain_jwt_secret_production_key_32bytes_vachan")
     JWT_ALGORITHM: str = Field(default="HS256")
