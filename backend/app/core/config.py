@@ -52,6 +52,21 @@ class Settings(BaseSettings):
 
     # ElevenLabs Voice AI (Speech-to-Text transcription & TTS explanations)
     ELEVENLABS_API_KEY: Optional[str] = Field(default=None)
+    ELEVEN_LABS_API_KEY: Optional[str] = Field(default=None)
+    ELEVENLABS_STT_MODEL: str = Field(default="scribe_v2")
+    MAX_AUDIO_FILE_SIZE_BYTES: int = Field(default=50 * 1024 * 1024)  # 50 MB
+    ALLOWED_AUDIO_MIME_TYPES: List[str] = Field(
+        default_factory=lambda: [
+            "audio/mpeg",
+            "audio/mp3",
+            "audio/wav",
+            "audio/m4a",
+            "audio/x-m4a",
+            "audio/ogg",
+            "audio/webm",
+        ]
+    )
+    RUN_LIVE_ELEVENLABS_TEST: bool = Field(default=False)
 
     # Google Gemini AI (Promise extraction vs policy clause comparison)
     GEMINI_API_KEY: Optional[str] = Field(default=None)
