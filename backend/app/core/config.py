@@ -70,6 +70,8 @@ class Settings(BaseSettings):
 
     # Google Gemini AI (Promise extraction vs policy clause comparison)
     GEMINI_API_KEY: Optional[str] = Field(default=None)
+    GEMINI_MODEL: str = Field(default="gemini-2.5-flash")
+    RUN_LIVE_GEMINI_TEST: bool = Field(default=False)
 
     # Security & JWT Authentication
     JWT_SECRET_KEY: str = Field(default="insurechain_jwt_secret_production_key_32bytes_vachan")
