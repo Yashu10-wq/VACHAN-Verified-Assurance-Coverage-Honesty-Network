@@ -1,0 +1,1018 @@
+# MASTER PROMPT — INSURECHAIN VOICEGUARD
+## VORTEXA 3.0 | Problem Statement B-02
+### Project Context, Architecture, Modules and Initial Repository Setup
+
+You are Antigravity, acting as a senior software architect and project setup engineer.
+
+We are preparing a hackathon project for VORTEXA 3.0. Development has NOT started yet.
+
+Your first responsibility is to understand the entire project, its problem statement, intended user experience, technical architecture, features, modules, security requirements and integration requirements.
+
+After understanding the project, perform ONLY the initial repository setup described at the end of this prompt.
+
+Do not start implementing the application. Do not build screens, APIs, database schemas, business logic, smart contracts or AI integrations yet.
+
+Do not commit, push, publish or upload anything to Git. I will manage Git operations myself.
+
+---
+
+# 1. PROJECT IDENTITY
+
+Project name: InsureChain VoiceGuard
+
+Event: VORTEXA 3.0
+
+Problem statement: B-02 — Policy-Aware Insurance Claims Workflow
+
+Domain: Blockchain and Decentralized Trust
+
+Technology sponsor: ElevenLabs
+
+InsureChain VoiceGuard combines insurance customer protection, policy-aware claims processing, AI-assisted evidence analysis, voice AI and blockchain-backed audit integrity.
+
+The solution must directly address the B-02 problem statement. It must not become merely an insurance chatbot, a generic document-analysis tool or a sales-recording application.
+
+The central purpose is to make insurance sales promises verifiable, claims decisions explainable, claim-state transitions enforceable and audit records tamper-evident.
+
+All policies, customers, registrations, claims, documents and payments in the hackathon demonstration will be simulated.
+
+The project is a prototype and must never imply that it issues real insurance policies, makes real insurance payments or represents a real insurance company.
+
+---
+
+# 2. CORE PRODUCT CONCEPT
+
+The project combines three major ideas.
+
+## A. Vaada-inspired customer protection
+
+An insurance agent initiates a recording of the sales conversation, with consent, through the application.
+
+After the conversation, the agent registers the customer, selects the insurance scheme and submits the registration.
+
+The system transcribes the conversation and extracts promises made by the agent. It compares these promises against the actual terms and conditions of the selected insurance scheme.
+
+The customer can subsequently log in, listen to the recording, inspect the transcript, review the promises and compare them with the original policy clauses before confirming the purchase.
+
+This helps customers understand what was represented during the sale and whether those representations match the written policy.
+
+## B. InsureChain policy-aware claims workflow
+
+Customers submit claims against simulated active policies.
+
+The system evaluates claims using explicit, deterministic policy rules. It detects late filings, excluded categories, above-limit claims, incomplete evidence and possible duplicate incidents.
+
+Claims move through a strictly controlled state machine.
+
+Every accepted decision and refused action is recorded in a tamper-evident audit history, with cryptographic hash anchoring on an EVM blockchain.
+
+AI may assist with document extraction, narrative analysis and inconsistency detection, but AI-generated flags must never independently determine claim eligibility, authorize a state transition or prove fraud.
+
+## C. ElevenLabs voice AI
+
+Use ElevenLabs meaningfully for:
+- Sales conversation transcription.
+- Customer voice input.
+- Spoken policy explanations.
+- Spoken claim-status and decision explanations.
+- Voice-assisted policy questions.
+- Optional constrained conversational voice agents.
+
+Voice AI must improve accessibility and explainability, not merely serve as a decorative integration.
+
+---
+
+# 3. FIXED HIGH-LEVEL ARCHITECTURE
+
+The final project will contain three main application folders:
+
+- `frontend/` — React web application.
+- `backend/` — Python FastAPI backend.
+- `app/` — Flutter mobile application.
+
+The applications share a single backend and a single application database.
+
+The intended architecture is:
+
+Flutter mobile application
+          |
+          |
+          v
+     FastAPI backend <------ React web application
+          |
+          +------ Neon Cloud PostgreSQL
+          |
+          +------ ElevenLabs APIs
+          |
+          +------ Private evidence and recording storage
+          |
+          +------ OCR and document-analysis services
+          |
+          +------ Solidity smart contract / EVM blockchain
+
+Both mobile and web clients must use the same backend APIs.
+
+Neither frontend may connect directly to PostgreSQL using privileged credentials.
+
+The three user roles must be supported on BOTH mobile and web.
+
+---
+
+# 4. TECHNOLOGY STACK — MANDATORY
+
+## 4.1 Mobile application
+
+Use Flutter and Dart.
+
+Preferred technologies:
+- Flutter stable.
+- Dart with null safety.
+- Material 3.
+- Riverpod for state management.
+- GoRouter for navigation.
+- Dio for API communication.
+- Flutter Secure Storage for sensitive client-side token storage.
+- Audio recording and playback packages.
+- File picker and image picker.
+- Camera access where appropriate.
+- Local notifications where appropriate.
+
+The Flutter application must support Android as the primary hackathon platform and maintain a structure compatible with future iOS support.
+
+Do not use React Native or Expo for the mobile application.
+
+## 4.2 Web application
+
+Use:
+- React.
+- Vite.
+- TypeScript.
+- Tailwind CSS.
+- React Router.
+- Lucide React.
+- Recharts.
+- A typed API client.
+
+The web application must support all three user roles and provide a polished, responsive experience.
+
+## 4.3 Backend
+
+Use:
+- Python 3.11 or a compatible supported Python version.
+- FastAPI.
+- Pydantic.
+- Psycopg 3.
+- Explicit, parameterized SQL.
+- Python-dotenv.
+- Secure password hashing.
+- JWT-based authentication.
+- PyMuPDF.
+- OCR and image-processing tools as appropriate.
+- Pytest.
+
+Keep API routing, business rules, database access, document processing, voice integrations, audit logic and blockchain interaction separated into appropriate modules.
+
+## 4.4 Database — strict requirements
+
+Use Neon Cloud PostgreSQL as the only application database.
+
+MANDATORY:
+- PostgreSQL hosted on Neon.
+- Psycopg 3 for database access.
+- Parameterized SQL or a lightweight database access layer that does not depend on SQLAlchemy.
+- PostgreSQL transactions, constraints, foreign keys and indexes.
+- Versioned SQL migration files and a reproducible migration runner.
+
+STRICTLY PROHIBITED:
+- SQLite.
+- SQLAlchemy.
+- A local database fallback.
+- A separate database for mobile or web.
+- Privileged database credentials in frontend code.
+
+The application must fail clearly if its database connection is missing or invalid. It must never silently switch to SQLite.
+
+Use an environment variable named `DATABASE_URL` for the backend connection string.
+
+The developer will create the Neon project and supply the actual connection string later. Never invent real credentials.
+
+Use secure TLS connections and appropriate connection handling for Neon.
+
+## 4.5 Blockchain
+
+Use:
+- Solidity.
+- Hardhat.
+- An EVM-compatible local development network.
+- SHA-256 hashes for audit-event integrity.
+- Blockchain hash anchoring.
+- An appropriate Ethereum JSON-RPC client.
+
+A local Hardhat network must be sufficient for the primary hackathon demonstration. A public testnet may be supported as an optional extension.
+
+Blockchain must be a functional trust component, not a decorative label or a hash shown only in the UI.
+
+## 4.6 ElevenLabs
+
+Use ElevenLabs through backend-controlled integrations.
+
+Potential capabilities:
+- Speech-to-text.
+- Text-to-speech.
+- Conversational AI.
+- Voice-based policy assistance.
+
+All API credentials must remain on the backend.
+
+If the service is not configured or unavailable, the system must support a clearly labelled demonstration fallback and must not pretend that an actual ElevenLabs request succeeded.
+
+---
+
+# 5. EXACTLY THREE USER ROLES
+
+The application must have exactly three user-facing roles.
+
+## 5.1 Customer
+
+The customer can:
+- Log in through Flutter and web.
+- View their policies.
+- Review pending policy registrations.
+- Listen to sales recordings.
+- Read transcripts and extracted promises.
+- Inspect actual policy clauses and contradictions.
+- Confirm or decline a simulated policy purchase.
+- View policy details and policy numbers.
+- Receive premium, renewal, expiry and claim-status notifications.
+- Ask policy questions using text or voice.
+- Submit category-specific claims.
+- Upload supporting documents.
+- View document-completeness results.
+- View claim status and decision explanations.
+- Inspect their own claim and policy history.
+
+Customers must not be able to access another customer's data or approve their own claims.
+
+## 5.2 Insurance Agent
+
+The agent can:
+- Log in through Flutter and web.
+- Select simulated insurance schemes.
+- Record sales conversations after obtaining explicit consent.
+- Enter synthetic customer details and declarations.
+- Upload simulated supporting documents.
+- Submit registrations for customer confirmation.
+- Review transcriptions and extracted promises.
+- Inspect registration status.
+- Respond to authorized clarification requests.
+
+Agents cannot activate policies without explicit customer confirmation.
+
+Agents cannot approve claims or mark claims as paid merely because they created the original policy registration.
+
+## 5.3 Approval Authority
+
+The approval authority can log in through BOTH Flutter and web.
+
+The authority can:
+- View simulated claims across customers.
+- Review policy details and applicable clauses.
+- Inspect eligibility rules and calculated amounts.
+- Review evidence and document-extraction results.
+- Inspect duplicate candidates.
+- Inspect document-integrity warnings.
+- Request additional evidence.
+- Approve eligible claims.
+- Reject claims with a recorded reason.
+- Mark approved claims as paid through a simulated payment workflow.
+- Inspect accepted decisions and refused actions.
+- Verify audit-chain integrity.
+- Verify blockchain anchors.
+
+Authorization must be enforced on the backend for every protected operation.
+
+Hiding an action in the frontend is not a security mechanism.
+
+Do not create a fourth user-facing login role.
+
+---
+
+# 6. MODULE 1 — AGENT-INITIATED SALES RECORDING
+
+The workflow starts when an agent and a customer discuss a simulated insurance product.
+
+The agent selects a scheme and initiates recording from the application.
+
+Before recording:
+- Obtain explicit affirmative consent.
+- Explain the recording purpose.
+- Show a visible recording indicator.
+- Provide an explicit stop-recording action.
+- Do not record secretly.
+
+After recording:
+- Store the recording securely off-chain.
+- Compute a SHA-256 hash.
+- Record its reference and timestamp.
+- Associate it with the registration and selected scheme.
+- Transcribe the recording through ElevenLabs.
+- Preserve the original recording and transcript.
+- Permit corrected transcripts without overwriting the original evidence.
+
+The agent enters synthetic customer information, contact details, declarations, scheme selection and relevant simulated documents.
+
+Never require real Aadhaar numbers, real PAN numbers, genuine identity documents or real medical records for the demonstration.
+
+---
+
+# 7. MODULE 2 — PROMISE EXTRACTION AND POLICY COMPARISON
+
+Use speech-to-text and structured AI extraction to identify promises made during the conversation.
+
+Example promise categories:
+- Full reimbursement.
+- Accident coverage.
+- Coverage commencement date.
+- Waiting periods.
+- Premium amounts.
+- Benefit limits.
+- Exclusions.
+- Conditions for claim settlement.
+
+Compare each extracted promise against the selected scheme's actual policy clauses.
+
+Possible verdicts:
+- SUPPORTED.
+- PARTLY_TRUE.
+- CONTRADICTED.
+- NOT_IN_POLICY.
+- UNCLEAR.
+
+Each result should include:
+- Source statement from the conversation.
+- Extracted promise.
+- Selected policy identifier.
+- Clause identifier.
+- Actual clause text.
+- Page reference.
+- Explanation.
+- Evidence strength.
+- Human-review recommendation.
+
+Only return a grounded contradiction when an actual relevant clause supports the comparison.
+
+If no reliable clause is found, return UNCLEAR rather than inventing evidence.
+
+Preserve references to the original policy document and page number.
+
+Do not accuse the agent of fraud based solely on an AI-generated result.
+
+---
+
+# 8. MODULE 3 — CUSTOMER CONFIRMATION AND POLICY ACTIVATION
+
+After registration, the customer receives a secure means to access the application.
+
+In My Policies, the registration appears as PENDING_CONFIRMATION.
+
+The customer can:
+- Replay the sales recording.
+- Read the transcript.
+- Inspect extracted promises.
+- Read relevant policy clauses.
+- Open a dedicated contradictions tab.
+- Confirm or decline the purchase.
+
+Only an explicit customer confirmation can activate the simulated policy.
+
+On confirmation:
+- Verify customer ownership.
+- Confirm that the registration is still pending.
+- Record the confirmation.
+- Activate the simulated policy transactionally.
+- Generate a unique simulated policy number.
+- Generate a confirmation receipt.
+- Display the policy in My Policies.
+- Create an in-app notification.
+- Optionally send an email if an email provider is configured.
+
+On decline, the registration becomes DECLINED and the policy must not be activated.
+
+Do not represent simulated issuance as a real insurance purchase.
+
+---
+
+# 9. MODULE 4 — POLICY MANAGEMENT AND NOTIFICATIONS
+
+Provide policy states such as:
+- Pending Confirmation.
+- Active.
+- Expiring Soon.
+- Expired.
+- Declined or inactive.
+
+Display:
+- Policy number.
+- Scheme name.
+- Coverage limit.
+- Covered categories.
+- Excluded categories.
+- Filing window.
+- Waiting periods.
+- Benefit rules.
+- Premium schedule.
+- Renewal and expiry dates.
+- Policy clauses.
+- Sales-recording reference.
+- Confirmation status.
+
+Implement notifications for:
+- Premium payment due.
+- Renewal approaching.
+- Expiry approaching.
+- Claim submitted.
+- Claim status changed.
+- Evidence requested.
+- Policy confirmation completed.
+
+Use a configurable reminder mechanism and deterministic demo dates. Reminders must be idempotent.
+
+In-app notifications must work without an external email service.
+
+---
+
+# 10. MODULE 5 — ELEVENLABS POLICY VOICE ASSISTANT
+
+Build a customer-facing assistant that supports text and voice.
+
+It should answer questions about:
+- Policy coverage.
+- Exclusions.
+- Waiting periods.
+- Limits.
+- Premiums.
+- Renewals.
+- Expiry.
+- Required claim documents.
+- Claim status.
+- Reasons for claim outcomes.
+
+Use ElevenLabs speech-to-text and text-to-speech.
+
+A constrained Conversational AI integration may be added with narrowly scoped backend tools.
+
+The assistant must only retrieve authorized policy and claim information.
+
+It must not:
+- Change policy terms.
+- Activate policies without confirmation.
+- Approve or reject claims.
+- Mark claims as paid.
+- Change roles.
+- Bypass required evidence.
+- Modify audit records.
+- Access another customer's information.
+
+Spoken explanations must be generated from actual stored data and deterministic decision results. Always provide the equivalent written response.
+
+---
+
+# 11. MODULE 6 — CATEGORY-SPECIFIC CLAIM SUBMISSION
+
+Customers initiate claims from their simulated active policies.
+
+Support configurable claim forms for at least three categories.
+
+## Vehicle insurance
+
+Possible evidence:
+- Incident date and location.
+- Vehicle registration details.
+- Registration certificate.
+- Driving licence.
+- Incident photographs.
+- Repair estimates or invoices.
+- Other policy-specific documents.
+
+## Hospitalization and mediclaim
+
+Possible evidence:
+- Admission and discharge dates.
+- Hospital details.
+- Treatment information.
+- Bills.
+- Prescriptions.
+- Diagnostic reports.
+- Discharge summary.
+- Other scheme-specific medical documents.
+
+## Generic claims
+
+Possible evidence:
+- Incident description.
+- Incident date.
+- Category.
+- Requested amount.
+- Relevant invoices or evidence.
+- Additional documents required by the selected scheme.
+
+Document requirements must come from configuration and the selected policy. Do not treat example lists as universal requirements for all insurers.
+
+Provide downloadable simulated hospital forms or document checklists that a customer may give to a hospital.
+
+Hospital-side processing is OUT OF SCOPE. Do not introduce a hospital login role.
+
+Every claim must contain:
+- Claim ID.
+- Policy reference.
+- Incident date.
+- Filing date.
+- Category.
+- Requested amount.
+- Narrative.
+- Evidence references.
+- Submission timestamp.
+
+Allow drafts and customer review before final submission.
+
+---
+
+# 12. MODULE 7 — DOCUMENT EXTRACTION AND INTEGRITY ANALYSIS
+
+Support:
+- PDF documents.
+- Scanned PDFs.
+- JPEG images.
+- PNG images.
+- Receipts.
+- Invoices.
+- Simulated identity-test documents.
+- Category-specific supporting evidence.
+
+The processing pipeline should:
+1. Validate file type and size.
+2. Store documents securely off-chain.
+3. Compute SHA-256 hashes.
+4. Extract PDF text and page references.
+5. Apply OCR to scanned documents and images.
+6. Extract relevant dates, amounts, identifiers and document types.
+7. Compare extracted fields with structured claim data.
+8. Validate date consistency and filing deadlines.
+9. Check arithmetic consistency in invoices where feasible.
+10. Detect exact duplicate evidence using hashes.
+11. Identify missing required documents.
+12. Produce a structured validation report.
+13. Preserve the analysis version and timestamp.
+
+Create a modular adapter for document-manipulation detection.
+
+Use deterministic checks for metadata, field inconsistencies, suspicious document structures and duplicate evidence.
+
+An open-source image-manipulation or document-forgery model may be integrated if it is actually available, compatible and legally usable.
+
+If it is unavailable, document the limitation and continue using the remaining pipeline.
+
+Do not pretend an unconfigured model detected forgery.
+
+Document reports must distinguish extracted facts, missing information, inconsistencies, suspicious signals and items requiring human review.
+
+An AI score is not proof of fraud.
+
+---
+
+# 13. MODULE 8 — DETERMINISTIC CLAIM ELIGIBILITY ENGINE
+
+The eligibility engine must be independent of the LLM and frontend.
+
+Every simulated policy defines:
+- Coverage limit.
+- Excluded categories.
+- Filing window.
+- Relevant clauses.
+- Benefit calculation rules where applicable.
+
+Every claim includes:
+- Policy.
+- Incident date.
+- Filing date.
+- Category.
+- Requested amount.
+- Narrative.
+- Evidence references.
+
+Evaluate:
+- Policy validity.
+- Incident date.
+- Filing deadline.
+- Excluded category.
+- Coverage limit.
+- Benefit rules.
+- Required evidence.
+- Duplicate candidates.
+- Other explicitly configured policy constraints.
+
+Return explicit, stable rule IDs and explanations for every applicable rule.
+
+Possible outcomes:
+- ELIGIBLE.
+- INELIGIBLE.
+- REQUIRES_REVIEW.
+- INCOMPLETE.
+
+Document and consistently apply rule precedence.
+
+## Above-limit policy
+
+Use this explicit demonstration rule:
+
+If an otherwise eligible claim exceeds the policy's monetary coverage limit, the requested amount is INELIGIBLE as submitted.
+
+Calculate the maximum potentially payable amount using the actual configured policy benefit formula and coverage limit.
+
+Display:
+- Original requested amount.
+- Policy limit.
+- Excess amount.
+- Maximum potentially payable amount.
+- Failed rule ID.
+- Explanation.
+
+For example, if the applicable limit is ₹50,000 and the customer requests ₹70,000, explain the ₹20,000 excess.
+
+If the policy permits payment up to the limit, the authority may review an explicitly adjusted claim for ₹50,000. Never silently rewrite the customer's original requested amount.
+
+Eligibility, potential payable amount and human approval are distinct concepts.
+
+Missing evidence should normally produce INCOMPLETE or a request for further evidence rather than an automatic fraud finding.
+
+AI-generated inconsistency flags must never independently change eligibility or claim state.
+
+---
+
+# 14. MODULE 9 — DUPLICATE INCIDENT DETECTION
+
+Detect possible duplicates even when claims have different reference numbers.
+
+Use:
+- Same policy ID.
+- Same or nearby incident dates.
+- Same category.
+- Normalized narrative.
+- Similar incident details.
+- Matching evidence hashes.
+- Other transparent matching signals.
+
+Return candidate claim IDs, matching reasons and an interpretable similarity score.
+
+A possible duplicate triggers review. It must not automatically be called fraud.
+
+Prevent duplicate simulated payments through database constraints and transaction-safe checks.
+
+---
+
+# 15. MODULE 10 — CLAIM STATE MACHINE AND AUTHORIZATION
+
+Implement these claim states:
+- SUBMITTED.
+- UNDER_REVIEW.
+- EVIDENCE_REQUESTED.
+- APPROVED.
+- REJECTED.
+- PAID.
+
+At minimum, permit:
+- SUBMITTED → UNDER_REVIEW.
+- UNDER_REVIEW → EVIDENCE_REQUESTED.
+- EVIDENCE_REQUESTED → UNDER_REVIEW.
+- UNDER_REVIEW → APPROVED.
+- UNDER_REVIEW → REJECTED.
+- APPROVED → PAID.
+
+Document any additional transitions.
+
+Reject unauthorized or invalid transitions. Never allow SUBMITTED to jump directly to PAID.
+
+Every accepted transition must record:
+- Actor.
+- Role.
+- Previous state.
+- New state.
+- Reason.
+- Timestamp.
+- Related claim and policy.
+
+Every refused action must also record the attempted action, actor, reason and timestamp.
+
+Use server-side authorization and transaction-safe state updates.
+
+---
+
+# 16. MODULE 11 — APPROVAL AUTHORITY DASHBOARD
+
+Build a professional web dashboard and a mobile-friendly authority interface.
+
+Dashboard metrics should include:
+- Total claims.
+- Submitted.
+- Under review.
+- Evidence requested.
+- Approved.
+- Rejected.
+- Paid.
+- Possible duplicates.
+- Document-review flags.
+- Pending decisions.
+
+The claims table should include:
+- Claim ID.
+- Customer.
+- Policy number.
+- Category.
+- Incident date.
+- Filing date.
+- Requested amount.
+- Potentially payable amount.
+- Current state.
+- Review indicators.
+
+The claim review workbench should provide:
+- Claim information.
+- Policy coverage and relevant clauses.
+- Rule-by-rule eligibility.
+- Requested versus potentially payable amount.
+- Extracted document fields.
+- Completeness report.
+- Document-integrity warnings.
+- Duplicate candidates.
+- Narrative inconsistencies.
+- Evidence previews.
+- Decision history.
+- Blockchain verification.
+- Spoken decision explanation using ElevenLabs.
+
+The authority may request evidence, approve eligible claims, reject claims with a reason and mark approved claims paid through the simulated payment workflow.
+
+All actions must follow the server-enforced state machine.
+
+---
+
+# 17. MODULE 12 — BLOCKCHAIN-BACKED AUDIT INTEGRITY
+
+This is a mandatory B-02 feature.
+
+Implement an append-only audit-event service.
+
+Each audit event contains:
+- Event ID.
+- Timestamp.
+- Actor ID and role.
+- Entity type and entity ID.
+- Action.
+- Structured event data.
+- Previous event hash.
+- Current event hash.
+
+Serialize events canonically and hash them with SHA-256.
+
+Link events through a hash chain.
+
+Create a Solidity smart contract that anchors event or batch hashes on an EVM blockchain.
+
+The contract should:
+- Store an anchor hash.
+- Associate it with an event or batch identifier.
+- Record the anchoring timestamp.
+- Emit an event for successful anchoring.
+- Prevent duplicate anchoring where appropriate.
+- Support querying anchors.
+
+Store sensitive data OFF-CHAIN.
+
+Never place personal information, identity documents, medical records, recordings, policy text or claim evidence on-chain.
+
+Implement:
+- Local hash-chain verification.
+- Blockchain-anchor verification.
+- An audit ledger interface.
+- A visible integrity status.
+- A tampered-event demonstration.
+- A comparison between the stored event hash and its blockchain anchor.
+
+The application must not expose endpoints for arbitrary audit-event editing or deletion.
+
+Document the trust model accurately: a local development blockchain demonstrates the integration but does not provide the decentralization guarantees of independently operated public-network validators.
+
+---
+
+# 18. MODULE 13 — AUTHENTICATION AND DATABASE DESIGN
+
+Use secure shared authentication for mobile and web.
+
+Implement hashed passwords, appropriate token handling and backend authorization.
+
+Use PostgreSQL as the only application database.
+
+The intended data model includes:
+- users.
+- customer_profiles.
+- insurance_schemes.
+- policy_clauses.
+- policy_registrations.
+- sales_recordings.
+- transcripts.
+- promises.
+- promise_verdicts.
+- policies.
+- claims.
+- evidence.
+- document_analysis_reports.
+- claim_decisions.
+- claim_state_events.
+- payments.
+- notifications.
+- audit_events.
+- blockchain_anchors.
+
+Use PostgreSQL transactions for policy activation, claim transitions, audit-event creation and simulated payments.
+
+Use secure file storage with randomized server-side filenames, file-size limits, content validation and authenticated download endpoints.
+
+Do not store large recordings and evidence directly in PostgreSQL. Store files securely and keep their references, metadata and hashes in PostgreSQL.
+
+Actual schema migrations and database implementation will be created in a later phase, not now.
+
+---
+
+# 19. MODULE 14 — DEMONSTRATION DATA
+
+The eventual system must support synthetic demonstration data for:
+1. A policy promise matching the written clause.
+2. A contradictory promise.
+3. A registration awaiting customer confirmation.
+4. An eligible claim.
+5. A late claim.
+6. An excluded-category claim.
+7. An above-limit claim.
+8. Duplicate claims with different reference numbers.
+9. A claim with incomplete evidence.
+10. A narrative inconsistency that does not alter eligibility.
+11. An unauthorized state-transition attempt.
+12. A successful authorized approval.
+13. A simulated payment.
+14. A tampered audit event.
+15. A blockchain anchor that can be verified.
+
+All records must be clearly identified as simulated.
+
+No real customer data or external insurer integration is required.
+
+---
+
+# 20. USER EXPERIENCE AND DESIGN DIRECTION
+
+Use a polished fintech design system with:
+- Navy.
+- Off-white.
+- Violet.
+- Teal.
+
+The mobile application should provide:
+- Role-aware navigation.
+- Recording waveform and recording state.
+- Audio playback.
+- Transcript and promise review.
+- Contradictions.
+- Policy cards.
+- Guided claim forms.
+- Document-upload progress.
+- Claim timeline.
+- Voice assistant.
+- Notifications.
+
+The web dashboard should provide:
+- Sidebar navigation.
+- Summary metrics.
+- Searchable and filterable claims.
+- Evidence viewer.
+- Rule evaluation panel.
+- Claim approval controls.
+- Audit ledger.
+- Blockchain integrity panel.
+- Analytics.
+
+Every eventual interactive control must have real behavior or a clearly explained unavailable state.
+
+---
+
+# 21. SECURITY AND ETHICAL REQUIREMENTS
+
+- Use synthetic demonstration data.
+- Obtain recording consent.
+- Never expose secrets in frontend code.
+- Enforce role permissions on the backend.
+- Isolate customer-owned resources.
+- Keep private files off-chain.
+- Use secure password hashing.
+- Use parameterized SQL.
+- Validate uploads.
+- Prevent duplicate simulated payments.
+- Preserve original recordings and evidence.
+- Keep audit history tamper-evident.
+- Treat AI findings as review signals.
+- Never claim an AI detector proves fraud.
+- Never allow AI to independently approve or reject claims.
+- Never fabricate policy clauses, document contents or blockchain verification results.
+- Clearly distinguish simulated actions from real-world insurance operations.
+
+---
+
+# 22. REQUIRED REPOSITORY STRUCTURE — SETUP PHASE ONLY
+
+Create the following three primary folders at the repository root:
+
+insurechain-voiceguard/
+├── frontend/
+├── backend/
+└── app/
+
+The folders have these responsibilities:
+
+`frontend/` — React web application.
+
+`backend/` — FastAPI backend, Neon PostgreSQL integration, business rules, document processing, ElevenLabs integration and blockchain services.
+
+`app/` — Flutter mobile application.
+
+For THIS phase, each folder should contain only:
+1. One README.md describing that folder's exact purpose, intended modules, technology stack, responsibilities and future development requirements.
+2. One appropriate dependency/configuration manifest:
+   - `frontend/package.json`
+   - `backend/requirements.txt`
+   - `app/pubspec.yaml`
+
+Do not create individual feature modules, source implementations, APIs, database schemas, migrations, screens, smart contracts or business logic yet.
+
+Do not create many extra files. Keep this initial setup deliberately minimal.
+
+The README files must describe the complete intended responsibilities of their respective folders, using the project context above.
+
+The dependency/configuration manifests must be valid and appropriate for the chosen technology stack.
+
+For the backend requirements, include compatible runtime dependencies for the planned FastAPI and Psycopg 3 architecture. Do not include SQLAlchemy or SQLite packages.
+
+For the frontend package manifest, include the core React, Vite, TypeScript and styling dependencies.
+
+For the Flutter manifest, include the core Flutter dependencies and the intended state-management, routing, networking and secure-storage dependencies.
+
+Do not fabricate lockfiles if the relevant tooling is unavailable.
+
+A root README or other root configuration files are not necessary for this first setup task unless specifically required to create the three folders and their manifests.
+
+---
+
+# 23. ABSOLUTE SCOPE LIMITS
+
+This is NOT the application development phase.
+
+Do not:
+- Implement the web dashboard.
+- Implement Flutter screens.
+- Implement API endpoints.
+- Create the database schema.
+- Create SQL migrations.
+- Implement claims logic.
+- Implement document analysis.
+- Implement ElevenLabs API calls.
+- Implement blockchain contracts.
+- Seed demo users or claims.
+- Generate extensive placeholder source files.
+- Commit, push or publish anything.
+
+Do not start coding the actual product until I explicitly instruct you to begin the next phase.
+
+---
+
+# 24. FINAL ACTION
+
+First, understand the complete project context above.
+
+Then create exactly these three primary folders:
+- frontend/
+- backend/
+- app/
+
+Inside each folder, create only its README.md and its required dependency/configuration manifest.
+
+Ensure the README content accurately reflects the full future product and each folder's responsibilities.
+
+Validate the dependency manifests where the necessary tooling is available.
+
+Report:
+1. The three folders created.
+2. The README and manifest created in each.
+3. The responsibilities documented in each README.
+4. Any dependency-validation checks that could not be performed.
+5. Confirmation that no application implementation was started.
+6. Confirmation that no Git commit, push or publication was performed.
+
+Stop after this setup phase and wait for my next instruction.
